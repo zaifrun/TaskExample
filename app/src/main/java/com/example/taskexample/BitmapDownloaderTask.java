@@ -1,15 +1,5 @@
 package com.example.taskexample;
 
-import java.io.FilterInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.ref.WeakReference;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.methods.HttpGet;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.http.AndroidHttpClient;
@@ -18,11 +8,27 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.HttpGet;
+
+import java.io.FilterInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+//The class overrides the AsynTask class
+//The parameters giving here, means that it takes as input a String, the 1st
+//parameter (which is the URL to download).
+//Then last parameter is a Bitmap - to this task will return a bitmap
+//The second parameter is void - meaning that it is not used.
 class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
     
     private ImageView imageView;
     private TextView progress;
-    
+
+	//In the constructor we get the ImageView to store the bitmap in
+	//and the TextView where we write any updates to.
     public BitmapDownloaderTask(ImageView imageView,TextView progress) {
         this.imageView = imageView;
         this.progress = progress;
@@ -33,7 +39,6 @@ class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
     //so we can make changes to the UI elements
     @Override
     protected void onProgressUpdate(Void... values) {
-    	// TODO Auto-generated method stub
     	progress.setText("Progress:Downloading.....");
     	super.onProgressUpdate(values);
     }
@@ -53,7 +58,8 @@ class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
     // any changes to ANY UI elements in this method
     protected Bitmap doInBackground(String... params) {
          // params comes from the execute() call: params[0] is the url.
-        publishProgress();//publish that we made progress
+        publishProgress();//publish that we made progress - this
+		//will call the onProgressUpdate once.
     	return downloadBitmap(params[0]); //download the URL
     }
 
@@ -67,8 +73,11 @@ class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
         {
             bitmap = null;
         }
+		//we have managed to download the URL
         if (bitmap!=null)
             {
+				//update our views - possible because this method is run
+				//in the UI thread.
         		imageView.setImageBitmap(bitmap);
                 progress.setText("Progress: Finished");
 
