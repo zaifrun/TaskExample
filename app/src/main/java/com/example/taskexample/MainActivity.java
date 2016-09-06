@@ -11,8 +11,8 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 	
 	//The url of the image that we want to download
-	String url = "http://www.idology.com/wp-content/uploads/2013/12/bigstock-Santa-Claus-show-ok-isolated-o-38669275.jpg";
-	
+	//String url = "http://www.idology.com/wp-content/uploads/2013/12/bigstock-Santa-Claus-show-ok-isolated-o-38669275.jpg";
+	String url = "http://www.pondar.dk/bigstock-Santa-Claus-show-ok-isolated-o-38669275.jpg";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
