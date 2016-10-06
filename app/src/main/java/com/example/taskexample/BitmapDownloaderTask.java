@@ -140,7 +140,7 @@ class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
 	    } catch (Exception e) {
 	        // Could provide a more explicit error message for IOException or IllegalStateException
 	        getRequest.abort();
-	        Log.w("ImageDownloader", "Error while retrieving bitmap from " + url, e);
+	        Log.w("ImageDownloader2", "Error while retrieving bitmap from " + url +" ,"+ e.getMessage());
 	    } finally {
 	        if (client != null) {
 	            client.close();
