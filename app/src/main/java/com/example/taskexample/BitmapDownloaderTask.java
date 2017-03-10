@@ -22,6 +22,8 @@ import java.io.InputStream;
 //parameter (which is the URL to download).
 //Then last parameter is a Bitmap - to this task will return a bitmap
 //The second parameter is void - meaning that it is not used.
+//The second parameter is usually an Integer type, since that is
+//the parameter used for keeping progress.
 class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
     
     private ImageView imageView;
@@ -60,6 +62,7 @@ class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
          // params comes from the execute() call: params[0] is the url.
         publishProgress();//publish that we made progress - this
 		//will call the onProgressUpdate once.
+		System.out.println("do in background");
     	return downloadBitmap(params[0]); //download the URL
     }
 

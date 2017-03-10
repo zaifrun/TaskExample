@@ -50,6 +50,7 @@ public class MainActivity extends Activity {
 	//clicklistener for the clear button
 	public void clear(View view)
 	{
+		//Get the progress and imageview.
 		TextView text = (TextView) findViewById(R.id.progress);
 		ImageView image = (ImageView) findViewById(R.id.imageView);
 		text.setText("Progress:");
@@ -61,6 +62,7 @@ public class MainActivity extends Activity {
 	{
 		TextView text = (TextView) findViewById(R.id.progress);
 		ImageView image = (ImageView) findViewById(R.id.imageView);
+		//do we have Internet.
 		if (haveInternet(this)) {
 			//create a new downloader task
 			BitmapDownloaderTask task = new BitmapDownloaderTask(image, text);
