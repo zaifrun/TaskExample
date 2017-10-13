@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '25.0.3'
 
     defaultConfig {
         applicationId "com.example.taskexample"
         minSdkVersion 16
         versionCode 1
         versionName "1.0"
-        targetSdkVersion 23
+        targetSdkVersion 25
     }
 
     buildTypes {
@@ -24,5 +24,5 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:25.2.0'
+    compile 'com.android.support:support-v4:25.3.1'
 }
