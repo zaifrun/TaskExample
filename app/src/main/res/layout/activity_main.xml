@@ -12,7 +12,8 @@
         android:id="@+id/progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Progress:" />
+        android:textSize="24sp"
+        android:text="@string/progress" />
 
     <Button
         android:id="@+id/downloadButton"
@@ -20,17 +21,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/progress"
         android:onClick="download"
-        android:text="Download Image" />
+        android:text="@string/download_image" />
     <Button
         android:id="@+id/clearButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/downloadButton"
         android:onClick="clear"
-        android:text="Clear Image" />
+        android:text="@string/clear_image" />
     
     <ImageView 
         android:id="@+id/imageView"
+        android:contentDescription="@string/an_image"
         android:layout_below="@+id/clearButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

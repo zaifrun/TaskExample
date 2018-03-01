@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
 
 	public static boolean haveInternet(Context ctx) {
 
-		NetworkInfo info = (NetworkInfo) ((ConnectivityManager) ctx
+		NetworkInfo info = ((ConnectivityManager) ctx
 				.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
 
 		if (info == null || !info.isConnected()) {
@@ -40,6 +40,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 	}
 
+	//This is used for creating the menu
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -51,17 +52,17 @@ public class MainActivity extends Activity {
 	public void clear(View view)
 	{
 		//Get the progress and imageview.
-		TextView text = (TextView) findViewById(R.id.progress);
-		ImageView image = (ImageView) findViewById(R.id.imageView);
-		text.setText("Progress:");
+		TextView text = findViewById(R.id.progress);
+		ImageView image = findViewById(R.id.imageView);
+		text.setText(R.string.progress);
 		//simply set our image bitmap to nothing.
 		image.setImageBitmap(null);
 	}
 	//clicklistener for the download button:
 	public void download(View view)
 	{
-		TextView text = (TextView) findViewById(R.id.progress);
-		ImageView image = (ImageView) findViewById(R.id.imageView);
+		TextView text = findViewById(R.id.progress);
+		ImageView image = findViewById(R.id.imageView);
 		//do we have Internet.
 		if (haveInternet(this)) {
 			//create a new downloader task

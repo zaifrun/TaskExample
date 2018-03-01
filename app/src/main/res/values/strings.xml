@@ -4,5 +4,13 @@
     <string name="app_name">TaskExample</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="progress">Progress:</string>
+    <string name="download_image">Download Image</string>
+    <string name="clear_image">Clear Image</string>
+    <string name="an_image">an image</string>
+    <string name="progressinit">Progress:</string>
+    <string name="downloading">Progress: Downloading.....</string>
+    <string name="starting">Progress: Starting....</string>
+    <string name="finished">Progress: Finished</string>
 
 </resources>

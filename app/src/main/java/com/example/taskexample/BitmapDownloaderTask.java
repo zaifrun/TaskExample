@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,7 +26,9 @@ import java.io.InputStream;
 //The second parameter is usually an Integer type, since that is
 //the parameter used for keeping progress.
 class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
-    
+
+
+	//Yes, I know, I am not handling memory leaks here....:-)
     private ImageView imageView;
     private TextView progress;
 
@@ -41,7 +44,7 @@ class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
     //so we can make changes to the UI elements
     @Override
     protected void onProgressUpdate(Void... values) {
-    	progress.setText("Progress:Downloading.....");
+    	progress.setText(R.string.downloading);
     	super.onProgressUpdate(values);
     }
     
@@ -50,7 +53,7 @@ class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
     //we can make changes to UI elements
     @Override
     protected void onPreExecute() {
-    	progress.setText("Progress: Starting....");
+    	progress.setText(R.string.starting);
     	super.onPreExecute();
     }
     
@@ -82,7 +85,7 @@ class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
 				//update our views - possible because this method is run
 				//in the UI thread.
         		imageView.setImageBitmap(bitmap);
-                progress.setText("Progress: Finished");
+                progress.setText(R.string.finished);
 
             }      
     }
@@ -114,7 +117,8 @@ class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
 	    }
 	}
     
-    public static Bitmap downloadBitmap(String url) {
+    @Nullable
+	private static Bitmap downloadBitmap(String url) {
 	    final AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
 	    final HttpGet getRequest = new HttpGet(url);
 
@@ -131,8 +135,7 @@ class BitmapDownloaderTask extends AsyncTask<String, Void, Bitmap> {
 	            InputStream inputStream = null;
 	            try {
 	                inputStream = entity.getContent(); 
-	                final Bitmap bitmap = BitmapFactory.decodeStream(new FlushedInputStream(inputStream));
-	                return bitmap;
+	                return BitmapFactory.decodeStream(new FlushedInputStream(inputStream));
 	            } finally {
 	                if (inputStream != null) {
 	                    inputStream.close();  
